@@ -444,6 +444,32 @@
         .categories-section { display: none !important; }
         .header { position: relative !important; top: auto !important; }
         #realTrackBtn { display: none !important; }
+        /* মোবাইলে সার্চ বার ফুল-উইডথ এবং হেডার ক্লিন করার জন্য */
+        @media (max-width: 768px) {
+            .header-wrapper {
+                flex-wrap: wrap !important;
+                height: auto !important;
+                padding: 10px 0 !important;
+                gap: 8px !important;
+            }
+            .header-wrapper .search-box {
+                display: flex !important;
+                order: 3 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: 1 1 100% !important;
+            }
+            .mobile-search-container {
+                display: none !important;
+            }
+            .brand-logo .brand-title {
+                font-size: 17px !important;
+            }
+            #openCustomTrack {
+                padding: 4px 9px !important;
+                font-size: 11px !important;
+            }
+        }
 
     </style>
 
@@ -885,6 +911,7 @@
             localStorage.setItem('luvellaOrders', JSON.stringify(orders));
         }, true);
     </script>
+    <script src="cloud.js"></script>
 
 </body>
 </html>

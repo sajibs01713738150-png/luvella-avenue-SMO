@@ -629,153 +629,37 @@
     <script src="script.js"></script>
 
 
-    </script>
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            // পুরনো অচল বাটনগুলোর বদলে ৩ জন টিম মেম্বারের WhatsApp বাটন বসানো
-            document.querySelectorAll('#orderForm button[type="submit"], #orderForm button.btn-primary').forEach(oldBtn => {
-                if (oldBtn.innerText.includes('অর্ডার প্লেস')) {
-                    const teamBox = document.createElement('div');
-                    teamBox.style.cssText = "display: flex; flex-direction: column; gap: 8px; margin-top: 10px;";
-                    teamBox.innerHTML = `
-                        <p style="font-size: 12px; font-weight: 700; color: #8A2E44; text-align: center; margin-bottom: 2px;">অর্ডার কনফার্ম করতে যেকোনো একজনকে বেছে নিন:</p>
-                        <button type="button" onclick="sendTeamWhatsApp(this, '8801346473166')" style="background: #25D366; color: #fff; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 3px 10px rgba(37,211,102,0.25);">
-                            📲 Sajib-কে অর্ডার পাঠান (WhatsApp)
-                        </button>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                            <button type="button" onclick="sendTeamWhatsApp(this, '8801537233354')" style="background: #1ebe5d; color: #fff; border: none; padding: 9px 6px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer;">
-                                📲 Mitu (WhatsApp)
-                            </button>
-                            <button type="button" onclick="sendTeamWhatsApp(this, '8801306842947')" style="background: #1ebe5d; color: #fff; border: none; padding: 9px 6px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer;">
-                                📲 Ontora (WhatsApp)
-                            </button>
-                        </div>
-                    `;
-                    oldBtn.replaceWith(teamBox);
-                }
-            });
-        });
-
-        function sendTeamWhatsApp(btn, targetPhone) {
-            const form = btn.closest('form');
-            const name = form.querySelector('#custName')?.value.trim();
-            const phone = form.querySelector('#custPhone')?.value.trim();
-            const address = form.querySelector('#custAddress')?.value.trim();
-
-            if (!name || !phone || !address) {
-                alert('অনুগ্রহ করে আপনার নাম, মোবাইল নম্বর এবং সম্পূর্ণ ঠিকানা লিখুন!');
+       <script>
+        // ১০০% কার্যকরী WhatsApp অর্ডার এবং কাস্টমার কেয়ার লিংক
+        document.addEventListener('click', function(e) {
+            // ১. Help Center-এর WhatsApp বাটনগুলো
+            const helpBtn = e.target.closest('.btn-wa-icon');
+            if (helpBtn) {
+                e.preventDefault();
+                const href = helpBtn.getAttribute('href') || '';
+                const num = href.replace(/\D/g, '') || '8801352068869';
+                const isMob = /Android|iPhone|iPad/i.test(navigator.userAgent);
+                const url = isMob
+                    ? 'https://whatsapp.com' + num
+                    : 'https://whatsapp.com' + num;
+                window.open(url, '_blank');
                 return;
             }
 
-            const areaEl = form.querySelector('#deliveryArea');
-            const areaText = areaEl ? areaEl.options[areaEl.selectedIndex].text : '';
-            const payMethod = form.querySelector('#paymentMethod')?.value || 'Cash on Delivery';
-            const senderNum = form.querySelector('#senderNumber')?.value.trim() || '';
-            const trxId = form.querySelector('#trxId')?.value.trim() || '';
-            const note = form.querySelector('#orderNote')?.value.trim() || 'নেই';
-            const total = form.querySelector('#finalPayable')?.innerText.trim() || '';
+            // ২. অর্ডার ফর্মের ৩টি WhatsApp বাটন (Sajib, Mitu, Ontora)
+            const target = e.target.closest('button, a');
+            if (!target) return;
 
-            let prodDetails = '';
-            const qtyBox = form.querySelector('#directQtyBox');
-            if (qtyBox && qtyBox.style.display !== 'none') {
-                const pName = form.querySelector('#directOrderTitle')?.innerText.trim() || '';
-                const pQty = form.querySelector('#directQtyNum')?.innerText.trim() || '1';
-                prodDetails = "• " + pName + " (" + pQty + " পিস)";
-            } else {
-                document.querySelectorAll('#cartItemsContainer .cart-item').forEach(el => {
-                    const t = el.querySelector('h4')?.innerText.trim() || '';
-                    const q = el.querySelector('.qty-controls span')?.innerText.trim() || '1';
-                    prodDetails += "• " + t + " (" + q + " পিস)\n";
-                });
-            }
+            const label = (target.innerText || '').trim();
+            let waPhone = '';
 
-            let payInfo = "💳 পেমেন্ট: " + payMethod;
-            if (payMethod === 'bKash' || payMethod === 'Nagad') {
-                payInfo += "\n📱 নম্বর: " + senderNum + "\n🧾 TrxID: " + trxId;
-            }
-
-            const msg = 
-                "🦋 *নতুন অর্ডার - Luvella Avenue*\n" +
-                "━━━━━━━━━━━━━━━━━━\n" +
-                "👤 *নাম:* " + name + "\n" +
-                "📞 *মোবাইল:* " + phone + "\n" +
-                "📍 *ঠিকানা:* " + address + "\n" +
-                "🚚 *এলাকা:* " + areaText + "\n\n" +
-                "🛍️ *প্রোডাক্ট:*\n" + prodDetails + "\n\n" +
-                payInfo + "\n" +
-                "📝 *নোট/সাইজ:* " + note + "\n" +
-                "━━━━━━━━━━━━━━━━━━\n" +
-                "💰 *সর্বমোট বিল:* " + total;
-
-            window.location.href = "https://whatsapp.com" + targetPhone + "&text=" + encodeURIComponent(msg);
-        }
-    </script>
-    <script>
-        (function() {
-            // ১. প্রতিটি প্রোডাক্ট কার্ডে ছোট Share (লিংক কপি) বাটন যোগ করা
-            setInterval(() => {
-                document.querySelectorAll('.product-card').forEach(card => {
-                    if (card.querySelector('.share-link-btn')) return;
-
-                    const title = card.querySelector('.product-title')?.innerText.trim() || '';
-                    const shareBtn = document.createElement('button');
-                    shareBtn.type = 'button';
-                    shareBtn.className = 'share-link-btn';
-                    shareBtn.title = 'প্রোডাক্ট লিংক কপি করুন';
-                    shareBtn.innerHTML = '🔗';
-                    shareBtn.style.cssText = 'position:absolute; top:8px; right:42px; width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.95); border:1px solid rgba(168,66,91,0.25); font-size:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10; box-shadow:0 2px 6px rgba(0,0,0,0.12);';
-
-                    shareBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const baseUrl = window.location.href.split('?')[0].split('#')[0];
-                        const shareUrl = baseUrl + '?item=' + encodeURIComponent(title);
-
-                        navigator.clipboard.writeText(shareUrl).then(() => {
-                            alert('✅ প্রোডাক্টের লিংক কপি হয়েছে!\nএখন যেকোনো জায়গায় পেস্ট করে শেয়ার করুন:\n' + shareUrl);
-                        }).catch(() => {
-                            prompt('এই লিংকটি কপি করে শেয়ার করুন:', shareUrl);
-                        });
-                    });
-
-                    const imgWrap = card.querySelector('.product-img-wrap');
-                    if (imgWrap) imgWrap.appendChild(shareBtn);
-                });
-            }, 600);
-
-            // ২. কেউ ওই লিংকে ক্লিক করে ওয়েবসাইটে ঢুকলে সরাসরি ওই প্রোডাক্টটিই সবার আগে দেখাবে
-            window.addEventListener('load', () => {
-                const params = new URLSearchParams(window.location.search);
-                const targetItem = params.get('item');
-                if (!targetItem) return;
-
-                setTimeout(() => {
-                    document.querySelectorAll('.product-card').forEach(card => {
-                        const cardTitle = card.querySelector('.product-title')?.innerText.trim();
-                        if (cardTitle && cardTitle.toLowerCase() === targetItem.toLowerCase()) {
-                            card.parentElement.prepend(card); // সবার প্রথমে নিয়ে আসবে
-                            card.style.border = '2px solid #A8425B';
-                            card.querySelector('img')?.click(); // বড় ভিউ ওপেন করবে
-                        }
-                    });
-                }, 400);
-            });
-        })();
-    </script>
-    <script>
-        document.addEventListener('click', function(ev) {
-            const el = ev.target.closest('button, a');
-            if (!el) return;
-
-            const txt = el.innerText || '';
-            let targetNum = '';
-
-            if (txt.includes('Sajib-কে অর্ডার')) targetNum = '8801346473166';
-            else if (txt.includes('Mitu (WhatsApp)')) targetNum = '8801537233354';
-            else if (txt.includes('Ontora (WhatsApp)')) targetNum = '8801306842947';
+            if (label.includes('Sajib-কে অর্ডার')) waPhone = '8801346473166';
+            else if (label.includes('Mitu (WhatsApp)')) waPhone = '8801537233354';
+            else if (label.includes('Ontora (WhatsApp)')) waPhone = '8801306842947';
             else return;
 
-            ev.preventDefault();
-            ev.stopImmediatePropagation();
+            e.preventDefault();
+            e.stopPropagation();
 
             const box = document.querySelector('#checkoutModal.show') || document.getElementById('checkoutModal');
             const name = box.querySelector('#custName')?.value.trim() || '';
@@ -783,7 +667,7 @@
             const addr = box.querySelector('#custAddress')?.value.trim() || '';
 
             if (!name || !phone || !addr) {
-                alert('অনুগ্রহ করে আপনার নাম, মোবাইল নম্বর এবং ঠিকানা লিখুন!');
+                alert('অনুগ্রহ করে আপনার নাম, মোবাইল নম্বর এবং সম্পূর্ণ ঠিকানা লিখুন!');
                 return;
             }
 
@@ -793,7 +677,7 @@
             const pay = box.querySelector('#paymentMethod')?.value || 'Cash on Delivery';
             const note = box.querySelector('#orderNote')?.value.trim() || 'নেই';
 
-            const orderMsg =
+            const msg =
                 '🦋 নতুন অর্ডার - Luvella Avenue\n' +
                 '👤 নাম: ' + name + '\n' +
                 '📞 মোবাইল: ' + phone + '\n' +
@@ -803,115 +687,14 @@
                 '📝 নোট: ' + note + '\n' +
                 '💰 মোট বিল: ' + tot;
 
-            // সরাসরি আপনার কম্পিউটার বা মোবাইলের WhatsApp অ্যাপ ওপেন করবে
-            window.location.href = 'whatsapp://send?phone=' + targetNum + '&text=' + encodeURIComponent(orderMsg);
+            const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+            const finalLink = isMobile
+                ? 'https://whatsapp.com' + waPhone + '&text=' + encodeURIComponent(msg)
+                : 'https://whatsapp.com' + waPhone + '&text=' + encodeURIComponent(msg);
+
+            window.open(finalLink, '_blank');
         }, true);
     </script>
-    <script src="order.js"></script>
-    <script src="track.js"></script>
-    <!-- 100% Working Live Order Tracking Box -->
-    <div id="customTrackOverlay" style="display:none; position:fixed; inset:0; background:rgba(45,41,42,0.6); z-index:99999; align-items:center; justify-content:center; padding:16px;">
-        <div style="background:#FDFBF7; width:100%; max-width:420px; border-radius:16px; padding:20px; box-shadow:0 12px 35px rgba(0,0,0,0.25); font-family:system-ui,sans-serif;">
-            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(168,66,91,0.2); padding-bottom:10px; margin-bottom:12px;">
-                <h3 style="margin:0; font-size:16px; color:#A8425B;">📦 আপনার অর্ডার ট্র্যাক করুন</h3>
-                <button type="button" onclick="document.getElementById('customTrackOverlay').style.display='none'" style="background:none; border:none; font-size:20px; cursor:pointer;">✕</button>
-            </div>
-            <p style="font-size:12px; color:#665E60; margin-bottom:10px;">অর্ডার করার সময় যে মোবাইল নম্বরটি দিয়েছিলেন সেটি লিখুন:</p>
-            <div style="display:flex; gap:6px; margin-bottom:12px;">
-                <input type="tel" id="custTrackInput" placeholder="যেমন: 017XXXXXXXX" style="flex:1; padding:9px 12px; border:1.5px solid #A8425B; border-radius:8px; font-size:13px;">
-                <button type="button" onclick="checkRealOrderStatus()" style="background:#A8425B; color:#fff; border:none; padding:0 16px; border-radius:8px; font-weight:700; font-size:12px; cursor:pointer;">খুঁজুন</button>
-            </div>
-            <div id="custTrackOutput" style="max-height:260px; overflow-y:auto;"></div>
-        </div>
-    </div>
-
-    <script>
-        // ১. উপরের হেডারে "📦 ট্র্যাক" বাটন বসানো
-        (function() {
-            const actions = document.querySelector('.header-actions');
-            if (actions && !document.getElementById('openCustomTrack')) {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.id = 'openCustomTrack';
-                btn.innerHTML = '📦 ট্র্যাক';
-                btn.style.cssText = 'background:#F5E1E6; color:#A8425B; border:1.5px solid #A8425B; padding:5px 11px; border-radius:20px; font-size:12px; font-weight:700; cursor:pointer;';
-                btn.onclick = function() {
-                    document.getElementById('customTrackOverlay').style.display = 'flex';
-                };
-                actions.prepend(btn);
-            }
-        })();
-
-        // ২. মোবাইল নম্বর দিয়ে অর্ডার খোঁজার ফাংশন
-        function checkRealOrderStatus() {
-            const phone = document.getElementById('custTrackInput').value.trim();
-            const out = document.getElementById('custTrackOutput');
-            if (!phone) {
-                out.innerHTML = '<p style="color:#A8425B; font-size:12px;">অনুগ্রহ করে মোবাইল নম্বর লিখুন।</p>';
-                return;
-            }
-
-            const orders = JSON.parse(localStorage.getItem('luvellaOrders')) || [];
-            const found = orders.filter(o => (o.phone || '').includes(phone));
-
-            if (found.length === 0) {
-                out.innerHTML = '<div style="background:#FFF5F7; padding:12px; border-radius:8px; border:1px dashed #A8425B; font-size:12px; text-align:center;">এই নম্বরে কোনো অর্ডার পাওয়া যায়নি।</div>';
-                return;
-            }
-
-            out.innerHTML = found.map(o => {
-                const st = o.status || 'Pending';
-                let msg = '⏳ অর্ডারটি গ্রহণ করা হয়েছে (Pending)';
-                if (st === 'Confirmed') msg = '✅ আপনার অর্ডারটি কনফার্ম হয়েছে!';
-                if (st === 'Courier') msg = '🚚 পার্সেলটি কুরিয়ারে পাঠানো হয়েছে!';
-                if (st === 'Delivered') msg = '🎉 ডেলিভারি সম্পন্ন হয়েছে!';
-
-                return `
-                <div style="background:#fff; border:1px solid rgba(168,66,91,0.25); border-radius:10px; padding:10px; margin-bottom:8px; font-size:12px;">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                        <strong>👤 ${o.name}</strong>
-                        <span style="background:#F5E1E6; color:#8A2E44; padding:2px 8px; border-radius:10px; font-weight:700; font-size:11px;">${st}</span>
-                    </div>
-                    <p style="color:#8A2E44; font-weight:700; margin:4px 0;">${msg}</p>
-                    <p style="color:#555; margin:2px 0;">🛍️ ${(o.items || []).map(i => i.title + ' (' + i.qty + 'টি)').join(', ')}</p>
-                    <p style="color:#333; font-weight:700; margin:2px 0;">💰 মোট বিল: ${o.total}</p>
-                </div>`;
-            }).join('');
-        }
-    </script>
-    <script>
-        // সবুজ WhatsApp বাটনে চাপ দিলে অর্ডারটি আগে ডাটাবেসে সেভ করবে যাতে ট্র্যাকিং ও অ্যাডমিন প্যানেলে দেখায়
-        document.addEventListener('click', function(e) {
-            const btn = e.target.closest('button, a');
-            if (!btn) return;
-            const txt = (btn.innerText || '');
-            if (!txt.includes('Sajib-কে অর্ডার') && !txt.includes('Mitu (WhatsApp)') && !txt.includes('Ontora (WhatsApp)')) return;
-
-            const modal = document.querySelector('#checkoutModal.show') || document.getElementById('checkoutModal');
-            const name = modal.querySelector('#custName')?.value.trim();
-            const phone = modal.querySelector('#custPhone')?.value.trim();
-            const address = modal.querySelector('#custAddress')?.value.trim();
-            if (!name || !phone || !address) return;
-
-            const prod = modal.querySelector('#directOrderTitle')?.innerText.trim() || 'শপিং ব্যাগ আইটেম';
-            const qty = Number(modal.querySelector('#directQtyNum')?.innerText.trim() || '1');
-            const total = modal.querySelector('#finalPayable')?.innerText.trim() || '';
-
-            let orders = JSON.parse(localStorage.getItem('luvellaOrders')) || [];
-            orders.unshift({
-                id: Date.now(),
-                name: name,
-                phone: phone,
-                address: address,
-                total: total,
-                status: 'Pending',
-                items: [{ title: prod, qty: qty, price: 0 }],
-                date: new Date().toLocaleString()
-            });
-            localStorage.setItem('luvellaOrders', JSON.stringify(orders));
-        }, true);
-    </script>
-    <script src="cloud.js"></script>
 
 </body>
 </html>

@@ -695,6 +695,64 @@
             window.open(finalLink, '_blank');
         }, true);
     </script>
+    <script>
+        // ১০০% নির্ভুল WhatsApp লিংক ফিক্স (মোবাইল ও ল্যাপটপ উভয়ের জন্য)
+        window.addEventListener('DOMContentLoaded', function() {
+            // ১. Help Center-এর ৩ জনের সবুজ WhatsApp বাটনে সরাসরি নির্ভুল লিংক বসানো
+            const helpWaLinks = document.querySelectorAll('.help-team-list .btn-wa-icon');
+            const teamNumbers = ['8801352068869', '8801537233354', '8801306842947'];
+            helpWaLinks.forEach((link, index) => {
+                const num = teamNumbers[index] || '8801352068869';
+                link.href = 'https://wa.me' + num + '?text=' + encodeURIComponent('আসসালামু আলাইকুম, Luvella Avenue থেকে একটি প্রোডাক্ট সম্পর্কে জানতে চাচ্ছি।');
+                link.target = '_blank';
+            });
+        });
+
+        // ২. অর্ডার ফর্মের ৩টি বাটনে ক্লিক করলে সরাসরি WhatsApp ওপেন হবে
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('button, a');
+            if (!btn) return;
+
+            const label = (btn.innerText || '').trim();
+            let orderPhone = '';
+
+            if (label.includes('Sajib-কে অর্ডার')) orderPhone = '8801346473166';
+            else if (label.includes('Mitu (WhatsApp)')) orderPhone = '8801537233354';
+            else if (label.includes('Ontora (WhatsApp)')) orderPhone = '8801306842947';
+            else return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            const box = document.querySelector('#checkoutModal.show') || document.getElementById('checkoutModal');
+            const name = box.querySelector('#custName')?.value.trim() || '';
+            const phone = box.querySelector('#custPhone')?.value.trim() || '';
+            const addr = box.querySelector('#custAddress')?.value.trim() || '';
+
+            if (!name || !phone || !addr) {
+                alert('অনুগ্রহ করে আপনার নাম, মোবাইল নম্বর এবং সম্পূর্ণ ঠিকানা লিখুন!');
+                return;
+            }
+
+            const prod = box.querySelector('#directOrderTitle')?.innerText.trim() || 'শপিং ব্যাগ আইটেম';
+            const qty = box.querySelector('#directQtyNum')?.innerText.trim() || '1';
+            const tot = box.querySelector('#finalPayable')?.innerText.trim() || '';
+            const pay = box.querySelector('#paymentMethod')?.value || 'Cash on Delivery';
+            const note = box.querySelector('#orderNote')?.value.trim() || 'নেই';
+
+            const msg =
+                '🦋 নতুন অর্ডার - Luvella Avenue\n' +
+                '👤 নাম: ' + name + '\n' +
+                '📞 মোবাইল: ' + phone + '\n' +
+                '📍 ঠিকানা: ' + addr + '\n' +
+                '🛍️ প্রোডাক্ট: ' + prod + ' (' + qty + ' পিস)\n' +
+                '💳 পেমেন্ট: ' + pay + '\n' +
+                '📝 নোট: ' + note + '\n' +
+                '💰 মোট বিল: ' + tot;
+
+            window.location.href = 'https://wa.me' + orderPhone + '?text=' + encodeURIComponent(msg);
+        }, true);
+    </script>
 
 </body>
 </html>

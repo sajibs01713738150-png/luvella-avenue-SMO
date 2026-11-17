@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luvella Avenue | Premium Lifestyle & Shopping</title>
+    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="fix.css">
+
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>✨ সারা বাংলাদেশে ক্যাশ অন ডেলিভারি সুবিধা | ২,০০০৳+ অর্ডারে ফ্রি ডেলিভারি!</span>
+    </div>
+
+    <header class="header">
+        <div class="container header-wrapper">
+            <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="16" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+
+            <a href="#" class="brand-logo">
+                <div class="logo-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 10.5C10.5 7 6.5 4.5 3.5 6C1.5 7 1.5 10.5 4 12.5C2 14.5 2.5 18 5 18.5C7.5 19 10 16.5 11.5 14V20H12.5V14C14 16.5 16.5 19 19 18.5C21.5 18 22 14.5 20 12.5C22.5 10.5 22.5 7 20.5 6C17.5 4.5 13.5 7 12 10.5Z"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-title">Luvella</span>
+                    <span class="brand-sub">Avenue</span>
+                </div>
+            </a>
+
+            <div class="search-box">
+                <input type="text" placeholder="পছন্দের প্রোডাক্ট খুঁজুন (যেমন: ঘড়ি, ব্যাগ, কসমেটিকস...)">
+                <button type="button" aria-label="Search">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="action-item" id="wishBtn" title="Wishlist">
+                    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span class="badge" id="wishCount">0</span>
+                </button>
+
+                <button type="button" class="action-item" id="cartBtn" title="Shopping Bag">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="mobile-search-container">
+            <div class="search-box mobile-search">
+                <input type="text" placeholder="Luvella Avenue-তে প্রোডাক্ট খুঁজুন...">
+                <button type="button" aria-label="Search">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <nav class="desktop-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="#" class="active">হোম</a></li>
+                    <li><a href="#products">ব্যাগ ও ফ্যাশন</a></li>
+                    <li><a href="#products">বিউটি কেয়ার</a></li>
+                    <li><a href="#products">স্মার্ট গ্যাজেট</a></li>
+                    <li><a href="#products">জুয়েলারি</a></li>
+                    <li><a href="#products">হোম ডেকোর</a></li>
+                    <li><a href="#products" class="offer-link">🔥 স্পেশাল অফার</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <span class="brand-title">Luvella Avenue</span>
+            <button id="closeDrawer">✕</button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="#">🏠 হোম</a></li>
+            <li><a href="#products">👜 ব্যাগ ও ফ্যাশন</a></li>
+            <li><a href="#products">✨ বিউটি কেয়ার</a></li>
+            <li><a href="#products">⌚ স্মার্ট গ্যাজেট</a></li>
+            <li><a href="#products">💎 জুয়েলারি</a></li>
+            <li><a href="#products">🪴 হোম ডেকোর</a></li>
+        </ul>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-tag">✨ প্রিমিয়াম কালেকশন ২০২৬</span>
+                <h1>আপনার স্টাইল ও প্রয়োজনের প্রিমিয়াম ঠিকানা</h1>
+                <p>সেরা মানের ফ্যাশন, গ্যাজেট ও বিউটি প্রোডাক্ট পান এক জায়গায়, দ্রুততম ডেলিভারিতে।</p>
+                <div class="hero-btns">
+                    <a href="#products" class="btn-primary">শপিং শুরু করুন →</a>
+                    <a href="#categories" class="btn-outline">ক্যাটাগরি দেখুন</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-feature-box">
+                    <span class="feature-badge">🦋 LUVELLA EXCLUSIVE</span>
+                    <h3>১০০% অরিজিনাল ও প্রিমিয়াম কোয়ালিটি গ্যারান্টি</h3>
+                    <p>ফ্যাশন, গ্যাজেট, বিউটি ও লাইফস্টাইলের সেরা কালেকশন এখন হাতের মুঠোয়।</p>
+                    <div class="feature-tags">
+                        <span>✓ ক্যাশ অন ডেলিভারি</span>
+                        <span>✓ ২৪-৭২ ঘণ্টায় ডেলিভারি</span>
+                        <span>✓ ৭ দিনে সহজ রিটার্ন</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2>জনপ্রিয় ক্যাটাগরি</h2>
+                <a href="#products" class="view-all">সব দেখুন →</a>
+            </div>
+            <div class="category-grid">
+                <a href="#products" class="cat-card">
+                    <div class="cat-svg-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8425B" stroke-width="1.8" stroke-linecap="round"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+                    </div>
+                    <span>ব্যাগ ও ফ্যাশন</span>
+                </a>
+                <a href="#products" class="cat-card">
+                    <div class="cat-svg-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8425B" stroke-width="1.8" stroke-linecap="round"><path d="M9 3h6v4H9z"/><rect x="7" y="7" width="10" height="14" rx="2"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                    </div>
+                    <span>বিউটি কেয়ার</span>
+                </a>
+                <a href="#products" class="cat-card">
+                    <div class="cat-svg-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8425B" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 2h6v4H9z"/><path d="M9 18h6v4H9z"/></svg>
+                    </div>
+                    <span>স্মার্ট গ্যাজেট</span>
+                </a>
+                <a href="#products" class="cat-card">
+                    <div class="cat-svg-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8425B" stroke-width="1.8" stroke-linecap="round"><polygon points="12 2 19 9 12 22 5 9 12 2"/><line x1="5" y1="9" x2="19" y2="9"/></svg>
+                    </div>
+                    <span>জুয়েলারি</span>
+                </a>
+                <a href="#products" class="cat-card">
+                    <div class="cat-svg-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8425B" stroke-width="1.8" stroke-linecap="round"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10z"/><path d="M9 21V12h6v9"/></svg>
+                    </div>
+                    <span>হোম ডেকোর</span>
+                </a>
+                <a href="#products" class="cat-card">
+                    <div class="cat-svg-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A8425B" stroke-width="1.8" stroke-linecap="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                    </div>
+                    <span>গিফট আইটেম</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>আমাদের সেরা কালেকশন</h2>
+                <span id="productCountText" class="sub-hint">০টি প্রোডাক্ট</span>
+            </div>
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+                   <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <p style="margin: 0;">© ২০২৬ Luvella Avenue. সর্বস্বত্ব সংরক্ষিত।</p>
+                <span style="display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; color: #8A2E44; font-size: 9px; font-weight: 900; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">SMO</span>
+            </div>
+
+    </footer>
+
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>🛍️ শপিং ব্যাগ (<span id="drawerCartCount">0</span>)</h3>
+            <button id="closeCart">✕</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer"></div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-summary-row">
+                <span>সাবটোটাল:</span>
+                <strong id="cartSubtotal">৳০</strong>
+            </div>
+            <button class="btn-primary" id="openCheckoutBtn" style="width:100%; justify-content:center;">
+                অর্ডার কনফার্ম করুন →
+            </button>
+        </div>
+    </div>
+        <!-- Wishlist Modal -->
+    <div class="modal-backdrop" id="wishModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>❤️ আমার উইশলিস্ট (<span id="modalWishCount">0</span>)</h3>
+                <button id="closeWish">✕</button>
+            </div>
+            <div id="wishItemsContainer"></div>
+        </div>
+    </div>
+    <!-- Product Quick View & Image Zoom Modal -->
+    <div class="modal-backdrop" id="productZoomModal">
+        <div class="modal-card" style="max-width: 680px;">
+            <div class="modal-header">
+                <h3>🔍 প্রোডাক্ট বিস্তারিত ও জুম ভিউ</h3>
+                <button id="closeZoomModal">✕</button>
+            </div>
+            <div id="zoomModalBody"></div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="checkoutModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>অর্ডার সম্পন্ন করুন</h3>
+                <button id="closeCheckout">✕</button>
+            </div>
+            <form id="orderForm" class="checkout-form">
+                  <div id="directQtyBox" style="background: #F9ECEF; padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(168,66,91,0.2);">
+                    <div>
+                        <strong id="directOrderTitle" style="font-size: 13px; color: #2D292A; display: block;">প্রোডাক্টের নাম</strong>
+                        <span id="directOrderUnitPrice" style="font-size: 12px; color: #A8425B; font-weight: 700;">৳০</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <button type="button" id="decDirectQty" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #A8425B; background: #fff; font-weight: 700; cursor: pointer;">-</button>
+                        <strong id="directQtyNum" style="font-size: 14px;">1</strong>
+                        <button type="button" id="incDirectQty" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #A8425B; background: #A8425B; color: #fff; font-weight: 700; cursor: pointer;">+</button>
+                    </div>
+                </div>
+                                <!-- অর্ডারকৃত প্রোডাক্ট ও পরিমাণ (Quantity) কন্ট্রোল -->
+              
+
+                <div class="form-group">
+                    <label>আপনার পূর্ণ নাম *</label>
+                    <input type="text" id="custName" required placeholder="যেমন: তানভীর আহমেদ">
+                </div>
+                <div class="form-group">
+                    <label>মোবাইল নম্বর *</label>
+                    <input type="tel" id="custPhone" required placeholder="013xxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label>ডেলিভারি এলাকা *</label>                <!-- অর্ডারকৃত প্রোডাক্ট ও পরিমাণ (Quantity) কন্ট্রোল -->
+                <div id="directQtyBox" style="background: #F9ECEF; padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(168,66,91,0.2);">
+                    <div>
+                        <strong id="directOrderTitle" style="font-size: 13px; color: #2D292A; display: block;">প্রোডাক্টের নাম</strong>
+                        <span id="directOrderUnitPrice" style="font-size: 12px; color: #A8425B; font-weight: 700;">৳০</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <button type="button" id="decDirectQty" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #A8425B; background: #fff; font-weight: 700; cursor: pointer;">-</button>
+                        <strong id="directQtyNum" style="font-size: 14px;">1</strong>
+                        <button type="button" id="incDirectQty" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #A8425B; background: #A8425B; color: #fff; font-weight: 700; cursor: pointer;">+</button>
+                    </div>
+                </div>
+
+                    <select id="deliveryArea">
+                        <option value="60">ঢাকার ভেতরে (ডেলিভারি চার্জ ৳৬০)</option>
+                        <option value="120">ঢাকার বাইরে সারা বাংলাদেশ (ডেলিভারি চার্জ ৳১২০)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>সম্পূর্ণ ঠিকানা *</label>
+                    <textarea id="custAddress" rows="2" required placeholder="বাসা নং, রোড, এলাকা, জেলা..."></textarea>
+                </div>
+                                <div class="form-group">
+                    <label>পেমেন্ট মেথড বেছে নিন *</label>
+                    <select id="paymentMethod">
+                        <option value="Cash on Delivery">🚚 ক্যাশ অন ডেলিভারি (পণ্য হাতে পেয়ে টাকা)</option>
+                        <option value="bKash">📱 bKash (বিকাশ সেন্ড মানি / পেমেন্ট)</option>
+                        <option value="Nagad">📱 Nagad (নগদ সেন্ড মানি / পেমেন্ট)</option>
+                    </select>
+                </div>
+
+                <!-- বিকাশ/নগদ সিলেক্ট করলে এই বক্সটি দেখাবে -->
+                <div id="mobilePayBox" style="display:none; background: #FFF5F7; padding: 12px; border-radius: 10px; border: 1px dashed #A8425B; margin-bottom: 12px; font-size: 12px;">
+                    <p style="color: #A8425B; font-weight: 700; margin-bottom: 6px;">নিচের নম্বরে Send Money করে তথ্য দিন:</p>
+                    <p style="margin-bottom: 8px;">bKash / Nagad (Personal): <strong>01346473166</strong></p>
+                    <input type="text" id="senderNumber" placeholder="যে নম্বর থেকে টাকা পাঠিয়েছেন *" style="margin-bottom: 8px;">
+                    <input type="text" id="trxId" placeholder="Transaction ID (TrxID) লিখুন *">
+                </div>
+
+                <div class="form-group">
+                    <label>অর্ডার নোট / সাইজ বা কালার (ঐচ্ছিক)</label>
+                    <input type="text" id="orderNote" placeholder="যেমন: সাইজ L, কালার কালো বা বিশেষ কোনো নির্দেশনা...">
+                </div>
+
+                <div class="checkout-total-box">
+                    <span>সর্বমোট বিল (ডেলিভারিসহ):</span>
+                    <strong id="finalPayable">৳০</strong>
+                </div>
+                                <button type="button" class="btn-primary" style="width:100%; justify-content:center;" onclick="
+                    var f = this.closest('form');
+                    var n = f.querySelector('#custName').value.trim();
+                    var p = f.querySelector('#custPhone').value.trim();
+                    var a = f.querySelector('#custAddress').value.trim();
+                    if(!n || !p || !a){ alert('অনুগ্রহ করে নাম, মোবাইল নম্বর ও ঠিকানা লিখুন!'); return; }
+                    var prod = f.querySelector('#directOrderTitle') ? f.querySelector('#directOrderTitle').innerText : 'Cart Items';
+                    var qty = f.querySelector('#directQtyNum') ? f.querySelector('#directQtyNum').innerText : '1';
+                    var tot = f.querySelector('#finalPayable').innerText;
+                    var pay = f.querySelector('#paymentMethod') ? f.querySelector('#paymentMethod').value : 'COD';
+                    var note = f.querySelector('#orderNote') ? f.querySelector('#orderNote').value : '';
+                    var text = '🦋 *নতুন অর্ডার - Luvella Avenue*\n👤 নাম: ' + n + '\n📞 মোবাইল: ' + p + '\n📍 ঠিকানা: ' + a + '\n🛍️ প্রোডাক্ট: ' + prod + ' (' + qty + ' পিস)\n💳 পেমেন্ট: ' + pay + '\n📝 নোট: ' + note + '\n💰 মোট বিল: ' + tot;
+                    window.open('https://whatsapp.com' + encodeURIComponent(text), '_blank');
+                ">অর্ডার প্লেস করুন (WhatsApp)</button>
+
+            </form>
+        </div>
+    </div>
+
+    <nav class="mobile-bottom-nav">
+        <a href="#" class="bottom-nav-item active">
+            <span>🏠</span>
+            <span>হোম</span>
+        </a>
+        <a href="#categories" class="bottom-nav-item">
+            <span>📂</span>
+            <span>ক্যাটাগরি</span>
+        </a>
+        <a href="#products" class="bottom-nav-item">
+            <span>🛍️</span>
+            <span>শপ</span>
+        </a>
+        <button type="button" class="bottom-nav-item" id="mobileCartBtn">
+            <span>🛒</span>
+            <span>ব্যাগ</span>
+        </button>
+    </nav>
+ 
+            <!-- Floating Round Help Button & Team Popup -->
+    <style>
+        .help-widget {
+            position: fixed !important;
+            bottom: 22px !important;
+            right: 22px !important;
+            z-index: 9999 !important;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .help-round-btn {
+            width: 58px !important;
+            height: 58px !important;
+            border-radius: 50% !important;
+            background: linear-gradient(135deg, #A8425B 0%, #8A2E44 100%) !important;
+            color: #FFFFFF !important;
+            border: 2px solid #FFFFFF !important;
+            box-shadow: 0 6px 20px rgba(138, 46, 68, 0.4) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            line-height: 1.1 !important;
+            transition: transform 0.25s ease !important;
+        }
+        .help-round-btn:hover {
+            transform: scale(1.08) !important;
+        }
+        .help-round-btn .h-icon { font-size: 18px; }
+        .help-round-btn .h-text { font-size: 10px; font-weight: 700; margin-top: 2px; }
+        .help-popup {
+            display: none !important;
+            position: absolute !important;
+            bottom: 68px !important;
+            right: 0 !important;
+            width: 310px !important;
+            max-width: 90vw !important;
+            background: #FDFBF7 !important;
+            border-radius: 16px !important;
+            border: 1.5px solid rgba(168, 66, 91, 0.25) !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22) !important;
+            overflow: hidden !important;
+        }
+        .help-popup.show {
+            display: block !important;
+        }
+        .help-popup-header {
+            background: linear-gradient(135deg, #A8425B 0%, #8A2E44 100%);
+            color: #FFFFFF;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .help-popup-header strong { display: block; font-size: 14px; }
+        .help-popup-header span { font-size: 11px; color: #F5E1E6; }
+        .help-popup-header button { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+        .help-team-list { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+        .team-row {
+            background: #FFFFFF;
+            padding: 9px 11px;
+            border-radius: 11px;
+            border: 1px solid rgba(168, 66, 91, 0.16);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .team-info strong { display: block; font-size: 12px; color: #2D292A; }
+        .team-info span { font-size: 11px; color: #665E60; }
+        .team-actions { display: flex; gap: 6px; }
+        .btn-call-icon {
+            width: 30px; height: 30px; border-radius: 50%; background: #F5E1E6; color: #A8425B;
+            display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 13px;
+        }
+        .btn-wa-icon {
+            width: 30px; height: 30px; border-radius: 50%; background: #25D366; color: #FFFFFF;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .help-widget { bottom: 68px !important; right: 14px !important; }
+            .help-round-btn { width: 52px !important; height: 52px !important; }
+        }
+                /* Help বাটন ও পপ-আপ বক্স ছোট ও কম্প্যাক্ট করার জন্য */
+        .help-round-btn {
+            width: 44px !important;
+            height: 44px !important;
+            bottom: 16px !important;
+            right: 16px !important;
+        }
+        .help-round-btn .h-icon { font-size: 14px !important; }
+        .help-round-btn .h-text { font-size: 9px !important; margin-top: 1px !important; }
+        .help-popup {
+            width: 255px !important;
+            bottom: 54px !important;
+            border-radius: 12px !important;
+        }
+        .help-popup-header { padding: 8px 12px !important; }
+        .help-popup-header strong { font-size: 12px !important; }
+        .help-popup-header span { font-size: 10px !important; }
+        .help-team-list { padding: 8px !important; gap: 6px !important; }
+        .team-row { padding: 6px 9px !important; border-radius: 8px !important; }
+        .team-info strong { font-size: 11px !important; }
+        .team-info span { font-size: 10px !important; }
+        .btn-call-icon, .btn-wa-icon { width: 25px !important; height: 25px !important; font-size: 11px !important; }
+        .btn-wa-icon svg { width: 13px !important; height: 13px !important; }
+        .categories-section { display: none !important; }
+        .header { position: relative !important; top: auto !important; }
+        #realTrackBtn { display: none !important; }
+
+    </style>
+
+    <div class="help-widget">
+        <div class="help-popup" id="helpPopup">
+            <div class="help-popup-header">
+                <div>
+                    <strong>🦋 Luvella Help Center</strong>
+                    <span>যেকোনো তথ্যের জন্য সরাসরি কথা বলুন</span>
+                </div>
+                <button type="button" id="closeHelpBtn">✕</button>
+            </div>
+            <div class="help-team-list">
+                <div class="team-row">
+                    <div class="team-info">
+                        <strong>Sajib (Owner & Support)</strong>
+                        <span>01352-068869 / 01346-473166</span>
+                    </div>
+                    <div class="team-actions">
+                        <a href="tel:+8801346473166" class="btn-call-icon" title="Direct Call">📞</a>
+                        <a href="https://wa.me" target="_blank" class="btn-wa-icon" title="WhatsApp">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.95 11 13.11C10.26 12.45 9.77 11.64 9.62 11.39C9.5 11.15 9.61 11 9.73 10.89C9.84 10.78 10 10.6 10.1 10.45C10.23 10.31 10.27 10.2 10.35 10.04C10.43 9.87 10.39 9.73 10.33 9.61C10.27 9.5 9.77 8.26 9.56 7.77C9.36 7.29 9.16 7.35 9 7.34C8.86 7.34 8.7 7.33 8.53 7.33Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <strong>Mitu (Customer Care)</strong>
+                        <span>+880 1537-233354</span>
+                    </div>
+                    <div class="team-actions">
+                        <a href="tel:+8801537233354" class="btn-call-icon" title="Direct Call">📞</a>
+                        <a href="https://wa.me" target="_blank" class="btn-wa-icon" title="WhatsApp">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.95 11 13.11C10.26 12.45 9.77 11.64 9.62 11.39C9.5 11.15 9.61 11 9.73 10.89C9.84 10.78 10 10.6 10.1 10.45C10.23 10.31 10.27 10.2 10.35 10.04C10.43 9.87 10.39 9.73 10.33 9.61C10.27 9.5 9.77 8.26 9.56 7.77C9.36 7.29 9.16 7.35 9 7.34C8.86 7.34 8.7 7.33 8.53 7.33Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <strong>Ontora (Product Support)</strong>
+                        <span>+880 1306-842947</span>
+                    </div>
+                    <div class="team-actions">
+                        <a href="tel:+8801306842947" class="btn-call-icon" title="Direct Call">📞</a>
+                        <a href="https://wa.me" target="_blank" class="btn-wa-icon" title="WhatsApp">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.95 11 13.11C10.26 12.45 9.77 11.64 9.62 11.39C9.5 11.15 9.61 11 9.73 10.89C9.84 10.78 10 10.6 10.1 10.45C10.23 10.31 10.27 10.2 10.35 10.04C10.43 9.87 10.39 9.73 10.33 9.61C10.27 9.5 9.77 8.26 9.56 7.77C9.36 7.29 9.16 7.35 9 7.34C8.86 7.34 8.7 7.33 8.53 7.33Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="help-round-btn" id="openHelpBtn" title="Help Center">
+            <span class="h-icon">🎧</span>
+            <span class="h-text">Help</span>
+        </button>
+    </div>
+
+    <script>
+        (function() {
+            let activePrice = 0;
+            let activeQty = 1;
+
+            // পেজ লোড হলেই ডেলিভারি এলাকার নিচের বাড়তি বক্সটি মুছে ফেলবে
+            window.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('#directQtyBox').forEach((box, idx) => {
+                    if (idx > 0) box.remove();
+                });
+            });
+
+            function syncCheckoutUI() {
+                document.querySelectorAll('#directOrderUnitPrice').forEach(el => el.innerText = '৳' + activePrice + ' / পিস');
+                document.querySelectorAll('#directQtyNum').forEach(el => el.innerText = activeQty);
+                const areaEl = document.querySelector('#checkoutModal.show #deliveryArea') || document.getElementById('deliveryArea');
+                const shipping = (activePrice * activeQty) >= 2000 ? 0 : (Number(areaEl?.value) || 60);
+                const total = (activePrice * activeQty) + shipping;
+                document.querySelectorAll('#finalPayable').forEach(el => {
+                    el.innerText = '৳' + total + (shipping === 0 ? ' (ফ্রি ডেলিভারি!)' : '');
+                });
+            }
+
+            document.body.addEventListener('click', function(e) {
+                // Order Now বাটনে ক্লিক করলে
+                const orderBtn = e.target.closest('.btn-order-sm');
+                if (orderBtn) {
+                    const card = orderBtn.closest('.product-card');
+                    const title = card.querySelector('.product-title').innerText.trim();
+                    activePrice = Number(card.querySelector('.current-price').innerText.replace('৳', '').trim());
+                    activeQty = 1;
+
+                    setTimeout(() => {
+                        document.querySelectorAll('#directQtyBox').forEach((b, i) => {
+                            if (i === 0) {
+                                b.closest('form').prepend(b);
+                                b.style.display = 'flex';
+                            } else {
+                                b.remove();
+                            }
+                        });
+                        document.querySelectorAll('#directOrderTitle').forEach(el => el.innerText = title);
+                        syncCheckoutUI();
+                    }, 50);
+                    return;
+                }
+
+                // শপিং ব্যাগ থেকে অর্ডার করলে
+                if (e.target.closest('#openCheckoutBtn')) {
+                    document.querySelectorAll('#directQtyBox').forEach(b => b.style.display = 'none');
+                    return;
+                }
+
+                // পরিমাণ (+ / -) বাটন
+                if (e.target.id === 'incDirectQty') { activeQty++; syncCheckoutUI(); return; }
+                if (e.target.id === 'decDirectQty' && activeQty > 1) { activeQty--; syncCheckoutUI(); return; }
+
+                // অর্ডার প্লেস করুন বাটনে ক্লিক করলে (একই ট্যাবে ওপেন হবে, তাই ব্লক হবে না)
+                const submitBtn = e.target.closest('button');
+                if (submitBtn && submitBtn.innerText.includes('অর্ডার প্লেস')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const form = submitBtn.closest('form') || document.getElementById('orderForm');
+                    const name = form.querySelector('#custName')?.value.trim();
+                    const phone = form.querySelector('#custPhone')?.value.trim();
+                    const address = form.querySelector('#custAddress')?.value.trim();
+
+                    if (!name || !phone || !address) {
+                        alert('অনুগ্রহ করে নাম, মোবাইল নম্বর ও ঠিকানা লিখুন!');
+                        return;
+                    }
+
+                    const prod = form.querySelector('#directOrderTitle')?.innerText.trim() || 'শপিং ব্যাগ আইটেম';
+                    const qty = form.querySelector('#directQtyNum')?.innerText.trim() || '1';
+                    const tot = form.querySelector('#finalPayable')?.innerText.trim() || '';
+                    const pay = form.querySelector('#paymentMethod')?.value || 'Cash on Delivery';
+                    const note = form.querySelector('#orderNote')?.value.trim() || 'নেই';
+
+                    const msg = '🦋 *নতুন অর্ডার - Luvella Avenue*\n' +
+                                '👤 নাম: ' + name + '\n' +
+                                '📞 মোবাইল: ' + phone + '\n' +
+                                '📍 ঠিকানা: ' + address + '\n' +
+                                '🛍️ প্রোডাক্ট: ' + prod + ' (' + qty + ' পিস)\n' +
+                                '💳 পেমেন্ট: ' + pay + '\n' +
+                                '📝 নোট: ' + note + '\n' +
+                                '💰 মোট বিল: ' + tot;
+
+                    window.location.href = 'https://whatsapp.com' + encodeURIComponent(msg);
+                }
+            }, true);
+
+            document.addEventListener('change', function(e) {
+                if (e.target.id === 'deliveryArea' && activePrice > 0) syncCheckoutUI();
+            });
+        })();
+    </script>
+
+    <script src="script.js"></script>
+
+
+    </script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // পুরনো অচল বাটনগুলোর বদলে ৩ জন টিম মেম্বারের WhatsApp বাটন বসানো
+            document.querySelectorAll('#orderForm button[type="submit"], #orderForm button.btn-primary').forEach(oldBtn => {
+                if (oldBtn.innerText.includes('অর্ডার প্লেস')) {
+                    const teamBox = document.createElement('div');
+                    teamBox.style.cssText = "display: flex; flex-direction: column; gap: 8px; margin-top: 10px;";
+                    teamBox.innerHTML = `
+                        <p style="font-size: 12px; font-weight: 700; color: #8A2E44; text-align: center; margin-bottom: 2px;">অর্ডার কনফার্ম করতে যেকোনো একজনকে বেছে নিন:</p>
+                        <button type="button" onclick="sendTeamWhatsApp(this, '8801346473166')" style="background: #25D366; color: #fff; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 3px 10px rgba(37,211,102,0.25);">
+                            📲 Sajib-কে অর্ডার পাঠান (WhatsApp)
+                        </button>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                            <button type="button" onclick="sendTeamWhatsApp(this, '8801537233354')" style="background: #1ebe5d; color: #fff; border: none; padding: 9px 6px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer;">
+                                📲 Mitu (WhatsApp)
+                            </button>
+                            <button type="button" onclick="sendTeamWhatsApp(this, '8801306842947')" style="background: #1ebe5d; color: #fff; border: none; padding: 9px 6px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer;">
+                                📲 Ontora (WhatsApp)
+                            </button>
+                        </div>
+                    `;
+                    oldBtn.replaceWith(teamBox);
+                }
+            });
+        });
+
+        function sendTeamWhatsApp(btn, targetPhone) {
+            const form = btn.closest('form');
+            const name = form.querySelector('#custName')?.value.trim();
+            const phone = form.querySelector('#custPhone')?.value.trim();
+            const address = form.querySelector('#custAddress')?.value.trim();
+
+            if (!name || !phone || !address) {
+                alert('অনুগ্রহ করে আপনার নাম, মোবাইল নম্বর এবং সম্পূর্ণ ঠিকানা লিখুন!');
+                return;
+            }
+
+            const areaEl = form.querySelector('#deliveryArea');
+            const areaText = areaEl ? areaEl.options[areaEl.selectedIndex].text : '';
+            const payMethod = form.querySelector('#paymentMethod')?.value || 'Cash on Delivery';
+            const senderNum = form.querySelector('#senderNumber')?.value.trim() || '';
+            const trxId = form.querySelector('#trxId')?.value.trim() || '';
+            const note = form.querySelector('#orderNote')?.value.trim() || 'নেই';
+            const total = form.querySelector('#finalPayable')?.innerText.trim() || '';
+
+            let prodDetails = '';
+            const qtyBox = form.querySelector('#directQtyBox');
+            if (qtyBox && qtyBox.style.display !== 'none') {
+                const pName = form.querySelector('#directOrderTitle')?.innerText.trim() || '';
+                const pQty = form.querySelector('#directQtyNum')?.innerText.trim() || '1';
+                prodDetails = "• " + pName + " (" + pQty + " পিস)";
+            } else {
+                document.querySelectorAll('#cartItemsContainer .cart-item').forEach(el => {
+                    const t = el.querySelector('h4')?.innerText.trim() || '';
+                    const q = el.querySelector('.qty-controls span')?.innerText.trim() || '1';
+                    prodDetails += "• " + t + " (" + q + " পিস)\n";
+                });
+            }
+
+            let payInfo = "💳 পেমেন্ট: " + payMethod;
+            if (payMethod === 'bKash' || payMethod === 'Nagad') {
+                payInfo += "\n📱 নম্বর: " + senderNum + "\n🧾 TrxID: " + trxId;
+            }
+
+            const msg = 
+                "🦋 *নতুন অর্ডার - Luvella Avenue*\n" +
+                "━━━━━━━━━━━━━━━━━━\n" +
+                "👤 *নাম:* " + name + "\n" +
+                "📞 *মোবাইল:* " + phone + "\n" +
+                "📍 *ঠিকানা:* " + address + "\n" +
+                "🚚 *এলাকা:* " + areaText + "\n\n" +
+                "🛍️ *প্রোডাক্ট:*\n" + prodDetails + "\n\n" +
+                payInfo + "\n" +
+                "📝 *নোট/সাইজ:* " + note + "\n" +
+                "━━━━━━━━━━━━━━━━━━\n" +
+                "💰 *সর্বমোট বিল:* " + total;
+
+            window.location.href = "https://whatsapp.com" + targetPhone + "&text=" + encodeURIComponent(msg);
+        }
+    </script>
+    <script>
+        (function() {
+            // ১. প্রতিটি প্রোডাক্ট কার্ডে ছোট Share (লিংক কপি) বাটন যোগ করা
+            setInterval(() => {
+                document.querySelectorAll('.product-card').forEach(card => {
+                    if (card.querySelector('.share-link-btn')) return;
+
+                    const title = card.querySelector('.product-title')?.innerText.trim() || '';
+                    const shareBtn = document.createElement('button');
+                    shareBtn.type = 'button';
+                    shareBtn.className = 'share-link-btn';
+                    shareBtn.title = 'প্রোডাক্ট লিংক কপি করুন';
+                    shareBtn.innerHTML = '🔗';
+                    shareBtn.style.cssText = 'position:absolute; top:8px; right:42px; width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.95); border:1px solid rgba(168,66,91,0.25); font-size:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10; box-shadow:0 2px 6px rgba(0,0,0,0.12);';
+
+                    shareBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const baseUrl = window.location.href.split('?')[0].split('#')[0];
+                        const shareUrl = baseUrl + '?item=' + encodeURIComponent(title);
+
+                        navigator.clipboard.writeText(shareUrl).then(() => {
+                            alert('✅ প্রোডাক্টের লিংক কপি হয়েছে!\nএখন যেকোনো জায়গায় পেস্ট করে শেয়ার করুন:\n' + shareUrl);
+                        }).catch(() => {
+                            prompt('এই লিংকটি কপি করে শেয়ার করুন:', shareUrl);
+                        });
+                    });
+
+                    const imgWrap = card.querySelector('.product-img-wrap');
+                    if (imgWrap) imgWrap.appendChild(shareBtn);
+                });
+            }, 600);
+
+            // ২. কেউ ওই লিংকে ক্লিক করে ওয়েবসাইটে ঢুকলে সরাসরি ওই প্রোডাক্টটিই সবার আগে দেখাবে
+            window.addEventListener('load', () => {
+                const params = new URLSearchParams(window.location.search);
+                const targetItem = params.get('item');
+                if (!targetItem) return;
+
+                setTimeout(() => {
+                    document.querySelectorAll('.product-card').forEach(card => {
+                        const cardTitle = card.querySelector('.product-title')?.innerText.trim();
+                        if (cardTitle && cardTitle.toLowerCase() === targetItem.toLowerCase()) {
+                            card.parentElement.prepend(card); // সবার প্রথমে নিয়ে আসবে
+                            card.style.border = '2px solid #A8425B';
+                            card.querySelector('img')?.click(); // বড় ভিউ ওপেন করবে
+                        }
+                    });
+                }, 400);
+            });
+        })();
+    </script>
+    <script>
+        document.addEventListener('click', function(ev) {
+            const el = ev.target.closest('button, a');
+            if (!el) return;
+
+            const txt = el.innerText || '';
+            let targetNum = '';
+
+            if (txt.includes('Sajib-কে অর্ডার')) targetNum = '8801346473166';
+            else if (txt.includes('Mitu (WhatsApp)')) targetNum = '8801537233354';
+            else if (txt.includes('Ontora (WhatsApp)')) targetNum = '8801306842947';
+            else return;
+
+            ev.preventDefault();
+            ev.stopImmediatePropagation();
+
+            const box = document.querySelector('#checkoutModal.show') || document.getElementById('checkoutModal');
+            const name = box.querySelector('#custName')?.value.trim() || '';
+            const phone = box.querySelector('#custPhone')?.value.trim() || '';
+            const addr = box.querySelector('#custAddress')?.value.trim() || '';
+
+            if (!name || !phone || !addr) {
+                alert('অনুগ্রহ করে আপনার নাম, মোবাইল নম্বর এবং ঠিকানা লিখুন!');
+                return;
+            }
+
+            const prod = box.querySelector('#directOrderTitle')?.innerText.trim() || 'শপিং ব্যাগ আইটেম';
+            const qty = box.querySelector('#directQtyNum')?.innerText.trim() || '1';
+            const tot = box.querySelector('#finalPayable')?.innerText.trim() || '';
+            const pay = box.querySelector('#paymentMethod')?.value || 'Cash on Delivery';
+            const note = box.querySelector('#orderNote')?.value.trim() || 'নেই';
+
+            const orderMsg =
+                '🦋 নতুন অর্ডার - Luvella Avenue\n' +
+                '👤 নাম: ' + name + '\n' +
+                '📞 মোবাইল: ' + phone + '\n' +
+                '📍 ঠিকানা: ' + addr + '\n' +
+                '🛍️ প্রোডাক্ট: ' + prod + ' (' + qty + ' পিস)\n' +
+                '💳 পেমেন্ট: ' + pay + '\n' +
+                '📝 নোট: ' + note + '\n' +
+                '💰 মোট বিল: ' + tot;
+
+            // সরাসরি আপনার কম্পিউটার বা মোবাইলের WhatsApp অ্যাপ ওপেন করবে
+            window.location.href = 'whatsapp://send?phone=' + targetNum + '&text=' + encodeURIComponent(orderMsg);
+        }, true);
+    </script>
+    <script src="order.js"></script>
+    <script src="track.js"></script>
+    <!-- 100% Working Live Order Tracking Box -->
+    <div id="customTrackOverlay" style="display:none; position:fixed; inset:0; background:rgba(45,41,42,0.6); z-index:99999; align-items:center; justify-content:center; padding:16px;">
+        <div style="background:#FDFBF7; width:100%; max-width:420px; border-radius:16px; padding:20px; box-shadow:0 12px 35px rgba(0,0,0,0.25); font-family:system-ui,sans-serif;">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(168,66,91,0.2); padding-bottom:10px; margin-bottom:12px;">
+                <h3 style="margin:0; font-size:16px; color:#A8425B;">📦 আপনার অর্ডার ট্র্যাক করুন</h3>
+                <button type="button" onclick="document.getElementById('customTrackOverlay').style.display='none'" style="background:none; border:none; font-size:20px; cursor:pointer;">✕</button>
+            </div>
+            <p style="font-size:12px; color:#665E60; margin-bottom:10px;">অর্ডার করার সময় যে মোবাইল নম্বরটি দিয়েছিলেন সেটি লিখুন:</p>
+            <div style="display:flex; gap:6px; margin-bottom:12px;">
+                <input type="tel" id="custTrackInput" placeholder="যেমন: 017XXXXXXXX" style="flex:1; padding:9px 12px; border:1.5px solid #A8425B; border-radius:8px; font-size:13px;">
+                <button type="button" onclick="checkRealOrderStatus()" style="background:#A8425B; color:#fff; border:none; padding:0 16px; border-radius:8px; font-weight:700; font-size:12px; cursor:pointer;">খুঁজুন</button>
+            </div>
+            <div id="custTrackOutput" style="max-height:260px; overflow-y:auto;"></div>
+        </div>
+    </div>
+
+    <script>
+        // ১. উপরের হেডারে "📦 ট্র্যাক" বাটন বসানো
+        (function() {
+            const actions = document.querySelector('.header-actions');
+            if (actions && !document.getElementById('openCustomTrack')) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.id = 'openCustomTrack';
+                btn.innerHTML = '📦 ট্র্যাক';
+                btn.style.cssText = 'background:#F5E1E6; color:#A8425B; border:1.5px solid #A8425B; padding:5px 11px; border-radius:20px; font-size:12px; font-weight:700; cursor:pointer;';
+                btn.onclick = function() {
+                    document.getElementById('customTrackOverlay').style.display = 'flex';
+                };
+                actions.prepend(btn);
+            }
+        })();
+
+        // ২. মোবাইল নম্বর দিয়ে অর্ডার খোঁজার ফাংশন
+        function checkRealOrderStatus() {
+            const phone = document.getElementById('custTrackInput').value.trim();
+            const out = document.getElementById('custTrackOutput');
+            if (!phone) {
+                out.innerHTML = '<p style="color:#A8425B; font-size:12px;">অনুগ্রহ করে মোবাইল নম্বর লিখুন।</p>';
+                return;
+            }
+
+            const orders = JSON.parse(localStorage.getItem('luvellaOrders')) || [];
+            const found = orders.filter(o => (o.phone || '').includes(phone));
+
+            if (found.length === 0) {
+                out.innerHTML = '<div style="background:#FFF5F7; padding:12px; border-radius:8px; border:1px dashed #A8425B; font-size:12px; text-align:center;">এই নম্বরে কোনো অর্ডার পাওয়া যায়নি।</div>';
+                return;
+            }
+
+            out.innerHTML = found.map(o => {
+                const st = o.status || 'Pending';
+                let msg = '⏳ অর্ডারটি গ্রহণ করা হয়েছে (Pending)';
+                if (st === 'Confirmed') msg = '✅ আপনার অর্ডারটি কনফার্ম হয়েছে!';
+                if (st === 'Courier') msg = '🚚 পার্সেলটি কুরিয়ারে পাঠানো হয়েছে!';
+                if (st === 'Delivered') msg = '🎉 ডেলিভারি সম্পন্ন হয়েছে!';
+
+                return `
+                <div style="background:#fff; border:1px solid rgba(168,66,91,0.25); border-radius:10px; padding:10px; margin-bottom:8px; font-size:12px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                        <strong>👤 ${o.name}</strong>
+                        <span style="background:#F5E1E6; color:#8A2E44; padding:2px 8px; border-radius:10px; font-weight:700; font-size:11px;">${st}</span>
+                    </div>
+                    <p style="color:#8A2E44; font-weight:700; margin:4px 0;">${msg}</p>
+                    <p style="color:#555; margin:2px 0;">🛍️ ${(o.items || []).map(i => i.title + ' (' + i.qty + 'টি)').join(', ')}</p>
+                    <p style="color:#333; font-weight:700; margin:2px 0;">💰 মোট বিল: ${o.total}</p>
+                </div>`;
+            }).join('');
+        }
+    </script>
+    <script>
+        // সবুজ WhatsApp বাটনে চাপ দিলে অর্ডারটি আগে ডাটাবেসে সেভ করবে যাতে ট্র্যাকিং ও অ্যাডমিন প্যানেলে দেখায়
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('button, a');
+            if (!btn) return;
+            const txt = (btn.innerText || '');
+            if (!txt.includes('Sajib-কে অর্ডার') && !txt.includes('Mitu (WhatsApp)') && !txt.includes('Ontora (WhatsApp)')) return;
+
+            const modal = document.querySelector('#checkoutModal.show') || document.getElementById('checkoutModal');
+            const name = modal.querySelector('#custName')?.value.trim();
+            const phone = modal.querySelector('#custPhone')?.value.trim();
+            const address = modal.querySelector('#custAddress')?.value.trim();
+            if (!name || !phone || !address) return;
+
+            const prod = modal.querySelector('#directOrderTitle')?.innerText.trim() || 'শপিং ব্যাগ আইটেম';
+            const qty = Number(modal.querySelector('#directQtyNum')?.innerText.trim() || '1');
+            const total = modal.querySelector('#finalPayable')?.innerText.trim() || '';
+
+            let orders = JSON.parse(localStorage.getItem('luvellaOrders')) || [];
+            orders.unshift({
+                id: Date.now(),
+                name: name,
+                phone: phone,
+                address: address,
+                total: total,
+                status: 'Pending',
+                items: [{ title: prod, qty: qty, price: 0 }],
+                date: new Date().toLocaleString()
+            });
+            localStorage.setItem('luvellaOrders', JSON.stringify(orders));
+        }, true);
+    </script>
+
+</body>
+</html>
+

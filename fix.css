@@ -1,0 +1,601 @@
+.modal-backdrop {
+    display: none !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(45, 41, 42, 0.6);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.modal-backdrop.show {
+    display: flex !important;
+}
+
+.modal-card {
+    background: #FDFBF7;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 18px;
+    padding: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(168, 66, 91, 0.2);
+}
+
+.modal-header button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid rgba(168, 66, 91, 0.2);
+    border-radius: 9px;
+    background: #FFFFFF;
+    font-size: 13px;
+}
+
+.checkout-total-box {
+    background: #F5E1E6;
+    padding: 10px 14px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 14px 0;
+    font-size: 14px;
+}
+
+.mobile-bottom-nav {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: flex !important;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 58px;
+        background-color: #FFFFFF;
+        border-top: 1px solid rgba(168, 66, 91, 0.2);
+        z-index: 1000;
+    }
+}
+.card-btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+.btn-cart-sm { background: #F5E1E6; color: #A8425B; border: 1px solid rgba(168,66,91,0.2); padding: 7px 4px; border-radius: 7px; font-weight: 700; font-size: 11px; cursor: pointer; }
+.btn-order-sm { background: #A8425B; color: #fff; border: none; padding: 7px 4px; border-radius: 7px; font-weight: 700; font-size: 11px; cursor: pointer; }
+/* =========================================
+   SHOPPING CART DRAWER & THUMBNAIL FIX
+========================================= */
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -380px;
+    width: 350px;
+    max-width: 92vw;
+    height: 100vh;
+    background-color: #FDFBF7;
+    z-index: 2600;
+    display: flex;
+    flex-direction: column;
+    transition: 0.35s ease;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.18);
+}
+
+.cart-drawer.open {
+    right: 0;
+}
+
+.cart-header {
+    padding: 15px 18px;
+    background-color: #F5E1E6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(168, 66, 91, 0.2);
+}
+
+.cart-header h3 {
+    font-size: 16px;
+    color: #A8425B;
+}
+
+.cart-header button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 12px;
+    background: #FFFFFF;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(168, 66, 91, 0.16);
+    align-items: center;
+}
+
+.cart-item img {
+    width: 56px !important;
+    height: 56px !important;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-details h4 {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.cart-item-details span {
+    font-size: 13px;
+    font-weight: 700;
+    color: #A8425B;
+}
+
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.qty-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(168, 66, 91, 0.2);
+    background: #F9ECEF;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.cart-footer {
+    padding: 16px 18px;
+    background: #FFFFFF;
+    border-top: 1px solid rgba(168, 66, 91, 0.2);
+}
+
+.cart-summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+/* =========================================
+   3D PREMIUM LOGO & MOBILE DRAWER FIX
+========================================= */
+.brand-logo .brand-title {
+    color: #A8425B;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 
+        1px 1px 0px #F5E1E6,
+        2px 2px 3px rgba(138, 46, 68, 0.28);
+    transition: 0.3s ease;
+}
+
+.brand-logo:hover .brand-title {
+    transform: translateY(-1px);
+    text-shadow: 
+        1px 1px 0px #F5E1E6,
+        3px 4px 6px rgba(138, 46, 68, 0.38);
+}
+
+.brand-logo .logo-circle {
+    box-shadow: 
+        0 4px 10px rgba(168, 66, 91, 0.35),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+/* বাম পাশের মোবাইল মেনু ড্রয়ারটি ল্যাপটপে লুকিয়ে রাখার জন্য */
+.mobile-drawer {
+    position: fixed !important;
+    top: 0;
+    left: -300px !important;
+    width: 260px;
+    height: 100vh;
+    background-color: #FDFBF7;
+    z-index: 2800;
+    padding: 18px;
+    transition: 0.3s ease;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-drawer.open {
+    left: 0 !important;
+}
+/* =========================================
+   PRODUCT CARD WISHLIST HEART ICON FIX
+========================================= */
+.product-img-wrap {
+    position: relative !important;
+}
+
+.wish-heart-btn {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(168, 66, 91, 0.25);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: 0.25s;
+}
+
+.wish-heart-btn:hover,
+.wish-heart-btn.active {
+    transform: scale(1.1);
+    background-color: #FFFFFF;
+}
+/* =========================================
+   SLIM & PRODUCT-FOCUSED TOP LAYOUT (HIGH SALES)
+========================================= */
+.hero-section {
+    padding: 14px 0 !important;
+    background: #F5E1E6 !important;
+}
+
+.hero-grid {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.hero-visual,
+.hero-content p,
+.hero-tag {
+    display: none !important;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hero-content h1 {
+    font-size: 18px !important;
+    margin: 0 !important;
+    color: #2D292A;
+}
+
+.hero-btns .btn-outline {
+    display: none !important;
+}
+
+.hero-btns .btn-primary {
+    padding: 8px 18px !important;
+    font-size: 12px !important;
+}
+
+.categories-section {
+    padding: 18px 0 10px !important;
+}
+
+.products-section {
+    padding: 16px 0 45px !important;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        display: none !important;
+    }
+    .categories-section {
+        padding: 12px 0 8px !important;
+    }
+}
+/* =========================================
+   SOFT 3D NAVIGATION & LUXURY PROMO STRIP
+========================================= */
+.desktop-nav {
+    background: #FDFBF7 !important;
+    padding: 4px 0;
+}
+
+.nav-list {
+    gap: 10px !important;
+}
+
+.nav-list li a {
+    display: inline-block;
+    padding: 6px 15px !important;
+    border-radius: 50px;
+    background: #FFFFFF;
+    color: #2D292A;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(168, 66, 91, 0.14);
+    box-shadow: 0 3px 6px rgba(168, 66, 91, 0.08), inset 0 -2px 0 rgba(168, 66, 91, 0.08);
+    transition: all 0.25s ease;
+}
+
+.nav-list li a:hover,
+.nav-list li a.active {
+    background: linear-gradient(135deg, #A8425B 0%, #8A2E44 100%) !important;
+    color: #FFFFFF !important;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(168, 66, 91, 0.28);
+}
+
+.nav-list li a.offer-link {
+    background: #F5E1E6 !important;
+    color: #A8425B !important;
+    border: 1px solid rgba(168, 66, 91, 0.25);
+}
+
+/* প্রিমিয়াম গ্র্যাডিয়েন্ট ও গ্লাস-ইফেক্ট প্রোমো ব্যানার */
+.hero-section {
+    background: linear-gradient(95deg, #F5E1E6 0%, #FDFBF7 52%, #F5E1E6 100%) !important;
+    border-top: 1px solid rgba(168, 66, 91, 0.12);
+    border-bottom: 1px solid rgba(168, 66, 91, 0.18);
+    padding: 16px 0 !important;
+}
+
+.hero-content {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+    padding: 12px 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(168, 66, 91, 0.18);
+    box-shadow: 0 6px 20px rgba(168, 66, 91, 0.08);
+}
+
+.hero-content h1 {
+    font-size: 19px !important;
+    font-weight: 800 !important;
+    background: linear-gradient(90deg, #8A2E44, #A8425B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.2px;
+}
+
+.hero-btns .btn-primary {
+    background: linear-gradient(135deg, #A8425B 0%, #8A2E44 100%) !important;
+    box-shadow: 0 4px 12px rgba(168, 66, 91, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    padding: 9px 20px !important;
+    font-weight: 700;
+}
+/* =========================================
+   ULTRA-PREMIUM LUXURY BANNER UPGRADE
+========================================= */
+.hero-section {
+    background: #FDFBF7 !important;
+    border: none !important;
+    padding: 14px 0 8px !important;
+}
+
+.hero-content {
+    background: linear-gradient(125deg, #8A2E44 0%, #A8425B 55%, #C45873 100%) !important;
+    padding: 18px 28px !important;
+    border-radius: 18px !important;
+    border: 1.5px solid rgba(255, 223, 186, 0.45) !important;
+    box-shadow: 
+        0 10px 25px rgba(138, 46, 68, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.35) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content::before {
+    content: "✨ LUVELLA SIGNATURE";
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #FFE4C4;
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+.hero-content h1 {
+    font-size: 21px !important;
+    font-weight: 800 !important;
+    background: linear-gradient(90deg, #FFFFFF 0%, #FFF0F3 60%, #FFE4C4 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+    letter-spacing: 0.3px;
+}
+
+.hero-btns .btn-primary {
+    background: linear-gradient(135deg, #FFFBF7 0%, #F5E1E6 100%) !important;
+    color: #8A2E44 !important;
+    border: 1px solid #FFFFFF !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18) !important;
+    padding: 10px 22px !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    transition: all 0.25s ease !important;
+}
+
+.hero-btns .btn-primary:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: #FFFFFF !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25) !important;
+}
+/* =========================================
+   SLIM & COMPACT LUXURY BANNER HEIGHT FIX
+========================================= */
+.hero-section {
+    padding: 8px 0 4px !important;
+}
+
+.hero-content {
+    padding: 10px 20px !important;
+    border-radius: 12px !important;
+    flex-wrap: nowrap !important;
+}
+
+.hero-content::before {
+    display: none !important;
+}
+
+.hero-content h1 {
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+}
+
+.hero-btns .btn-primary {
+    padding: 7px 16px !important;
+    font-size: 12px !important;
+}
+/* =========================================
+   PRODUCT RATING STARS & REVIEW BOX STYLES
+========================================= */
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #F59E0B;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.card-rating span {
+    color: #665E60;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.review-section-box {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(168, 66, 91, 0.2);
+}
+
+.review-item {
+    background: #FFFFFF;
+    padding: 8px 12px;
+    border-radius: 9px;
+    border: 1px solid rgba(168, 66, 91, 0.14);
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.review-form-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.review-form-row input {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid rgba(168, 66, 91, 0.25);
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .card-rating { font-size: 10px; margin-bottom: 3px; }
+    .card-rating span { font-size: 9px; }
+}
+/* =========================================
+   DIRECT PRODUCT SHARE LINK BUTTON (CSS)
+========================================= */
+.share-link-btn {
+    position: absolute !important;
+    top: 8px !important;
+    right: 44px !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(168, 66, 91, 0.25);
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 25 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: 0.25s;
+}
+
+.share-link-btn:hover {
+    transform: scale(1.1);
+    background-color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+    .share-link-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+        top: 6px !important;
+        right: 36px !important;
+    }
+}
+/* =========================================
+   CLICKABLE WHATSAPP & SHARE BUTTON FIX
+========================================= */
+.share-link-btn,
+.wish-heart-btn {
+    pointer-events: auto !important;
+    z-index: 50 !important;
+}
+
+#checkoutModal a[href*="wa.me"],
+#checkoutModal button {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}

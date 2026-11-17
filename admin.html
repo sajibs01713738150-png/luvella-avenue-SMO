@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Luvella Avenue</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #A8425B;
+            --bg-main: #FDFBF7;
+            --bg-soft: #F5E1E6;
+            --text-main: #2D292A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg-main); color: var(--text-main); padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; background: var(--primary); color: #fff; padding: 16px 24px; border-radius: 14px; margin-bottom: 24px; }
+        .card { background: #fff; padding: 24px; border-radius: 16px; border: 1px solid rgba(168,66,91,0.2); margin-bottom: 24px; }
+        .grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        input, select { width: 100%; padding: 11px; border: 1.5px solid #ddd; border-radius: 10px; font-size: 14px; }
+        .full { grid-column: 1 / -1; }
+        .btn { background: var(--primary); color: #fff; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 14px; }
+        .btn-view { background: #fff; color: var(--primary); text-decoration: none; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 700; }
+        .prod-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; border-bottom: 1px solid #eee; gap: 12px; }
+        .prod-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; }
+        .del-btn { background: #ffe5e5; color: #d63031; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        @media (max-width: 600px) { .grid-form { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="adminPanel" style="display:none;">
+        <div class="header">
+            <h2>🦋 Luvella Admin Panel</h2>
+            <a href="index.html" target="_blank" class="btn-view">ওয়েবসাইট দেখুন ↗</a>
+        </div>
+
+        <!-- Add Product Form -->
+        <div class="card">
+            <h3 style="margin-bottom: 16px; color: var(--primary);">+ নতুন প্রোডাক্ট যোগ করুন</h3>
+            <form id="adminProductForm" class="grid-form">
+                <input type="text" id="pTitle" placeholder="প্রোডাক্টের নাম *" required>
+                <input type="text" id="pCat" placeholder="ক্যাটাগরি (যেমন: ব্যাগ, ঘড়ি, কসমেটিকস) *" required>
+                <input type="number" id="pPrice" placeholder="বিক্রয় মূল্য (৳) *" required>
+                <input type="number" id="pOldPrice" placeholder="আগের দাম (ঐচ্ছিক)">
+                <input type="text" id="pDiscount" placeholder="ডিসকাউন্ট ব্যাজ (যেমন: ২০% ছাড়)">
+                <input type="file" id="pImgFile" accept="image/*" required>
+                <button type="submit" class="btn full">প্রোডাক্ট পাবলিশ করুন</button>
+            </form>
+        </div>
+
+        <!-- Manage Added Products -->
+        <div class="card">
+            <h3 style="margin-bottom: 14px;">আপনার যোগ করা প্রোডাক্টসমূহ (<span id="totalCount">0</span>)</h3>
+            <div id="adminProductList"></div>
+        </div>
+    </div>
+
+    <script>
+        // গোপন পাসওয়ার্ড চেক (ডিফল্ট পাসওয়ার্ড: 1234)
+        const pass = prompt("Luvella Admin পাসওয়ার্ড দিন (ডিফল্ট: 1234):");
+        if (pass === "Luvella@2026#Admin") {
+            document.getElementById("adminPanel").style.display = "block";
+        } else {
+            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px; color:#A8425B;'>❌ ভুল পাসওয়ার্ড! অ্যাক্সেস অনুমোদিত নয়।</h2>";
+        }
+
+        let products = JSON.parse(localStorage.getItem('luvellaProducts')) || [];
+
+        function renderAdminList() {
+            document.getElementById('totalCount').innerText = products.length;
+            const list = document.getElementById('adminProductList');
+            if (products.length === 0) {
+                list.innerHTML = "<p style='color:#777; font-size:14px;'>এখনো কোনো প্রোডাক্ট যোগ করা হয়নি।</p>";
+                return;
+            }
+            list.innerHTML = products.map((p, index) => `
+                <div class="prod-item">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <img src="${p.img}" alt="">
+                        <div>
+                            <strong>${p.title}</strong>
+                            <div style="font-size:12px; color:#666;">${p.catName} • ৳${p.price}</div>
+                        </div>
+                    </div>
+                    <button class="del-btn" onclick="deleteProduct(${index})"><i class="ri-delete-bin-line"></i> মুছুন</button>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('adminProductForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const file = document.getElementById('pImgFile').files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const newProd = {
+                    id: Date.now(),
+                    title: document.getElementById('pTitle').value,
+                    catName: document.getElementById('pCat').value,
+                    price: Number(document.getElementById('pPrice').value),
+                    oldPrice: Number(document.getElementById('pOldPrice').value) || null,
+                    discount: document.getElementById('pDiscount').value || "নতুন",
+                    img: event.target.result
+                };
+                products.unshift(newProd);
+                localStorage.setItem('luvellaProducts', JSON.stringify(products));
+                renderAdminList();
+                document.getElementById('adminProductForm').reset();
+                alert("✅ প্রোডাক্ট সফলভাবে ওয়েবসাইটে যোগ হয়েছে!");
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function deleteProduct(index) {
+            if(confirm("আপনি কি এই প্রোডাক্টটি মুছে ফেলতে চান?")) {
+                products.splice(index, 1);
+                localStorage.setItem('luvellaProducts', JSON.stringify(products));
+                renderAdminList();
+            }
+        }
+
+        renderAdminList();
+                // =========================================
+        // REAL ORDER STATUS MANAGER FOR ADMIN
+        // =========================================
+        const origRenderOrders = typeof renderOrdersList === 'function' ? renderOrdersList : null;
+        renderOrdersList = function () {
+            const orders = JSON.parse(localStorage.getItem('luvellaOrders')) || [];
+            const countEl = document.getElementById('orderCount');
+            if (countEl) countEl.innerText = orders.length;
+            const orderBox = document.getElementById('adminOrdersList');
+            if (!orderBox) return;
+
+            if (orders.length === 0) {
+                orderBox.innerHTML = "<p style='color:#777; font-size:14px;'>এখনো কোনো অর্ডার আসেনি।</p>";
+                return;
+            }
+
+            orderBox.innerHTML = orders.map((ord, idx) => {
+                const currentStatus = ord.status || 'Pending';
+                return `
+                <div style="background: #FDFBF7; border: 1.5px solid rgba(168,66,91,0.22); border-radius: 12px; padding: 14px; margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 8px;">
+                        <div>
+                            <strong style="font-size: 15px; color: #2D292A;">👤 ${ord.name}</strong>
+                            <span style="font-size: 12px; color: #A8425B; font-weight: 700; margin-left: 8px;">📞 ${ord.phone}</span>
+                        </div>
+                        <span style="font-size: 11px; color: #666;">🕒 ${ord.date || ''}</span>
+                    </div>
+                    <p style="font-size: 13px; color: #444; margin-bottom: 6px;">📍 <strong>ঠিকানা:</strong> ${ord.address}</p>
+                    <div style="background: #F5E1E6; padding: 8px 12px; border-radius: 8px; font-size: 12.5px; margin-bottom: 10px;">
+                        ${(ord.items || []).map(i => `<div>🛍️ <strong>${i.title}</strong> × ${i.qty} পিস</div>`).join('')}
+                        <div style="margin-top: 4px; color: #8A2E44; font-weight: 700;">💰 সর্বমোট বিল: ${ord.total}</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <label style="font-size: 12px; font-weight: 700;">স্ট্যাটাস:</label>
+                            <select onchange="updateOrderStatus(${idx}, this.value)" style="padding: 5px 8px; border-radius: 7px; border: 1px solid #A8425B; font-size: 12px; font-weight: 600;">
+                                <option value="Pending" ${currentStatus === 'Pending' ? 'selected' : ''}>⏳ পেন্ডিং (Pending)</option>
+                                <option value="Confirmed" ${currentStatus === 'Confirmed' ? 'selected' : ''}>✅ অর্ডার কনফার্ম হয়েছে</option>
+                                <option value="Courier" ${currentStatus === 'Courier' ? 'selected' : ''}>🚚 কুরিয়ারে পাঠানো হয়েছে</option>
+                                <option value="Delivered" ${currentStatus === 'Delivered' ? 'selected' : ''}>🎉 ডেলিভারি সম্পন্ন</option>
+                            </select>
+                        </div>
+                        <button class="del-btn" onclick="deleteOrder(${idx})">মুছুন</button>
+                    </div>
+                </div>
+            `}).join('');
+        };
+
+        function updateOrderStatus(idx, newStatus) {
+            let orders = JSON.parse(localStorage.getItem('luvellaOrders')) || [];
+            if (orders[idx]) {
+                orders[idx].status = newStatus;
+                orders[idx].updatedAt = new Date().toLocaleString();
+                localStorage.setItem('luvellaOrders', JSON.stringify(orders));
+                alert('✅ কাস্টমারের অর্ডার স্ট্যাটাস আপডেট হয়েছে: ' + newStatus);
+                renderOrdersList();
+            }
+        }
+
+        renderOrdersList();
+
+    </script>
+</body>
+</html>

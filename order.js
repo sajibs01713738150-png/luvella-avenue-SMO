@@ -19,7 +19,8 @@ window.addEventListener('DOMContentLoaded', function () {
     const supportPhones = ['8801352068869', '8801537233354', '8801306842947'];
     waLinks.forEach((link, idx) => {
         const num = supportPhones[idx] || '8801352068869';
-        link.href = 'https://whatsapp.com' + num + '&text=' + encodeURIComponent('আসসালামু আলাইকুম, Luvella Avenue থেকে জানতে চাচ্ছি।');
+    link.href = 'https://wa.me' + num + '?text=' + encodeURIComponent('আসসালামু আলাইকুম, আমি কিছু তথ্য জানতে চাচ্ছি।');
+
         link.target = '_blank';
     });
 });

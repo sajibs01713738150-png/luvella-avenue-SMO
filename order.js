@@ -1,22 +1,42 @@
 // =======================================================
-// LUVELLA AVENUE - 100% WORKING WHATSAPP ORDER & SYNC
+// 100% WORKING WHATSAPP FOR MOBILE & PC (ALL BUTTONS)
 // =======================================================
+function openSmartWhatsApp(phone, textMessage) {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const encoded = textMessage ? '&text=' + encodeURIComponent(textMessage) : '';
+    
+    // মোবাইলে সরাসরি অ্যাপ ওপেন করবে, আর কম্পিউটারে সরাসরি WhatsApp Web ওপেন করবে
+    const waLink = isMobile
+        ? 'https://whatsapp.com' + phone + encoded
+        : 'https://whatsapp.com' + phone + encoded;
+
+    window.open(waLink, '_blank');
+}
+
 document.addEventListener('click', function (e) {
-    const btn = e.target.closest('button, a');
-    if (!btn) return;
-
-    const btnText = (btn.innerText || '').trim();
-    let targetPhone = '';
-
-    if (btnText.includes('Sajib-কে অর্ডার')) {
-        targetPhone = '8801346473166';
-    } else if (btnText.includes('Mitu (WhatsApp)')) {
-        targetPhone = '8801537233354';
-    } else if (btnText.includes('Ontora (WhatsApp)')) {
-        targetPhone = '8801306842947';
-    } else {
+    // ১. Help Center-এর সবুজ WhatsApp আইকনগুলোতে ক্লিক করলে
+    const helpWaBtn = e.target.closest('.btn-wa-icon');
+    if (helpWaBtn) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const rawHref = helpWaBtn.getAttribute('href') || '';
+        const phoneMatch = rawHref.match(/\d+/);
+        const targetPhone = phoneMatch ? phoneMatch : '8801352068869';
+        openSmartWhatsApp(targetPhone, 'আসসালামু আলাইকুম, Luvella Avenue থেকে একটি প্রোডাক্ট সম্পর্কে জানতে চাচ্ছি।');
         return;
     }
+
+    // ২. অর্ডার ফর্মের ৩টি WhatsApp বাটনে ক্লিক করলে
+    const orderBtn = e.target.closest('button, a');
+    if (!orderBtn) return;
+
+    const btnText = (orderBtn.innerText || '').trim();
+    let orderPhone = '';
+
+    if (btnText.includes('Sajib-কে অর্ডার')) orderPhone = '8801346473166';
+    else if (btnText.includes('Mitu (WhatsApp)')) orderPhone = '8801537233354';
+    else if (btnText.includes('Ontora (WhatsApp)')) orderPhone = '8801306842947';
+    else return;
 
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -58,7 +78,7 @@ document.addEventListener('click', function (e) {
         payDetails += '\n📱 সেন্ডার নম্বর: ' + senderNum + '\n🧾 TrxID: ' + trxId;
     }
 
-    // ১. ট্র্যাকিং ও অ্যাডমিন প্যানেলের জন্য অর্ডারটি সেভ করা
+    // ট্র্যাকিং ও অ্যাডমিনের জন্য সেভ করা
     let orders = JSON.parse(localStorage.getItem('luvellaOrders')) || [];
     orders.unshift({
         id: Date.now(),
@@ -72,7 +92,6 @@ document.addEventListener('click', function (e) {
     });
     localStorage.setItem('luvellaOrders', JSON.stringify(orders));
 
-    // ২. WhatsApp-এ পাঠানোর জন্য সাজানো মেসেজ তৈরি
     const waMessage =
         '🦋 *নতুন অর্ডার - Luvella Avenue*\n' +
         '━━━━━━━━━━━━━━━━━━\n' +
@@ -86,6 +105,5 @@ document.addEventListener('click', function (e) {
         '━━━━━━━━━━━━━━━━━━\n' +
         '💰 *সর্বমোট বিল:* ' + totalBill;
 
-    const finalUrl = 'https://wa.me' + targetPhone + '?text=' + encodeURIComponent(waMessage);
-    window.location.href = finalUrl;
+    openSmartWhatsApp(orderPhone, waMessage);
 }, true);

@@ -1,75 +1,68 @@
 // =======================================================
-// 100% WORKING WHATSAPP FOR MOBILE & PC (ALL BUTTONS)
+// LUVELLA AVENUE - 100% VERIFIED ORDER & HELP WHATSAPP
 // =======================================================
-function openSmartWhatsApp(phone, textMessage) {
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const encoded = textMessage ? '&text=' + encodeURIComponent(textMessage) : '';
-    
-    // মোবাইলে সরাসরি অ্যাপ ওপেন করবে, আর কম্পিউটারে সরাসরি WhatsApp Web ওপেন করবে
-    const waLink = isMobile
-        ? 'https://whatsapp.com' + phone + encoded
-        : 'https://whatsapp.com' + phone + encoded;
+window.addEventListener('DOMContentLoaded', function () {
+    // ১. Help Center পপআপ খোলা ও বন্ধ করা
+    const openHelp = document.getElementById('openHelpBtn');
+    const closeHelp = document.getElementById('closeHelpBtn');
+    const helpPopup = document.getElementById('helpPopup');
 
-    window.open(waLink, '_blank');
-}
-
-document.addEventListener('click', function (e) {
-    // ১. Help Center-এর সবুজ WhatsApp আইকনগুলোতে ক্লিক করলে
-    const helpWaBtn = e.target.closest('.btn-wa-icon');
-    if (helpWaBtn) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        const rawHref = helpWaBtn.getAttribute('href') || '';
-        const phoneMatch = rawHref.match(/\d+/);
-        const targetPhone = phoneMatch ? phoneMatch : '8801352068869';
-        openSmartWhatsApp(targetPhone, 'আসসালামু আলাইকুম, Luvella Avenue থেকে একটি প্রোডাক্ট সম্পর্কে জানতে চাচ্ছি।');
-        return;
+    if (openHelp && helpPopup) {
+        openHelp.addEventListener('click', () => helpPopup.classList.toggle('show'));
+    }
+    if (closeHelp && helpPopup) {
+        closeHelp.addEventListener('click', () => helpPopup.classList.remove('show'));
     }
 
-    // ২. অর্ডার ফর্মের ৩টি WhatsApp বাটনে ক্লিক করলে
-    const orderBtn = e.target.closest('button, a');
+    // ২. Help Center-এর ৩টি WhatsApp আইকনে সঠিক নম্বর বসানো
+    const waLinks = document.querySelectorAll('.help-team-list .btn-wa-icon');
+    const supportPhones = ['8801352068869', '8801537233354', '8801306842947'];
+    waLinks.forEach((link, idx) => {
+        const num = supportPhones[idx] || '8801352068869';
+        link.href = 'https://whatsapp.com' + num + '&text=' + encodeURIComponent('আসসালামু আলাইকুম, Luvella Avenue থেকে জানতে চাচ্ছি।');
+        link.target = '_blank';
+    });
+});
+
+// ৩. অর্ডার ফর্মের ৩টি বাটনে (Sajib, Mitu, Ontora) ক্লিক করলে WhatsApp-এ অর্ডার পাঠানো
+document.addEventListener('click', function (e) {
+    const orderBtn = e.target.closest('.wa-order-btn');
     if (!orderBtn) return;
-
-    const btnText = (orderBtn.innerText || '').trim();
-    let orderPhone = '';
-
-    if (btnText.includes('Sajib-কে অর্ডার')) orderPhone = '8801346473166';
-    else if (btnText.includes('Mitu (WhatsApp)')) orderPhone = '8801537233354';
-    else if (btnText.includes('Ontora (WhatsApp)')) orderPhone = '8801306842947';
-    else return;
 
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    const modal = document.querySelector('#checkoutModal.show') || document.getElementById('checkoutModal');
-    const name = modal.querySelector('#custName')?.value.trim() || '';
-    const phone = modal.querySelector('#custPhone')?.value.trim() || '';
-    const address = modal.querySelector('#custAddress')?.value.trim() || '';
+    const targetPhone = orderBtn.getAttribute('data-phone') || '8801346473166';
+    const form = orderBtn.closest('form');
+
+    const name = form.querySelector('#custName')?.value.trim() || '';
+    const phone = form.querySelector('#custPhone')?.value.trim() || '';
+    const address = form.querySelector('#custAddress')?.value.trim() || '';
 
     if (!name || !phone || !address) {
         alert('অনুগ্রহ করে আপনার নাম, মোবাইল নম্বর এবং সম্পূর্ণ ঠিকানা লিখুন!');
         return;
     }
 
-    const areaEl = modal.querySelector('#deliveryArea');
+    const areaEl = form.querySelector('#deliveryArea');
     const areaText = areaEl ? areaEl.options[areaEl.selectedIndex].text : '';
-    const payMethod = modal.querySelector('#paymentMethod')?.value || 'Cash on Delivery';
-    const senderNum = modal.querySelector('#senderNumber')?.value.trim() || '';
-    const trxId = modal.querySelector('#trxId')?.value.trim() || '';
-    const note = modal.querySelector('#orderNote')?.value.trim() || 'নেই';
-    const totalBill = modal.querySelector('#finalPayable')?.innerText.trim() || '';
+    const payMethod = form.querySelector('#paymentMethod')?.value || 'Cash on Delivery';
+    const senderNum = form.querySelector('#senderNumber')?.value.trim() || '';
+    const trxId = form.querySelector('#trxId')?.value.trim() || '';
+    const note = form.querySelector('#orderNote')?.value.trim() || 'নেই';
+    const total = form.querySelector('#finalPayable')?.innerText.trim() || '';
 
-    let productInfo = '';
-    const qtyBox = modal.querySelector('#directQtyBox');
+    let prodInfo = '';
+    const qtyBox = form.querySelector('#directQtyBox');
     if (qtyBox && qtyBox.style.display !== 'none') {
-        const pTitle = modal.querySelector('#directOrderTitle')?.innerText.trim() || '';
-        const pQty = modal.querySelector('#directQtyNum')?.innerText.trim() || '1';
-        productInfo = '• ' + pTitle + ' (' + pQty + ' পিস)';
+        const pTitle = form.querySelector('#directOrderTitle')?.innerText.trim() || '';
+        const pQty = form.querySelector('#directQtyNum')?.innerText.trim() || '1';
+        prodInfo = '• ' + pTitle + ' (' + pQty + ' পিস)';
     } else {
         document.querySelectorAll('#cartItemsContainer .cart-item').forEach(item => {
             const t = item.querySelector('h4')?.innerText.trim() || '';
             const q = item.querySelector('.qty-controls span')?.innerText.trim() || '1';
-            productInfo += '• ' + t + ' (' + q + ' পিস)\n';
+            prodInfo += '• ' + t + ' (' + q + ' পিস)\n';
         });
     }
 
@@ -78,32 +71,18 @@ document.addEventListener('click', function (e) {
         payDetails += '\n📱 সেন্ডার নম্বর: ' + senderNum + '\n🧾 TrxID: ' + trxId;
     }
 
-    // ট্র্যাকিং ও অ্যাডমিনের জন্য সেভ করা
-    let orders = JSON.parse(localStorage.getItem('luvellaOrders')) || [];
-    orders.unshift({
-        id: Date.now(),
-        name: name,
-        phone: phone,
-        address: address,
-        total: totalBill,
-        status: 'Pending',
-        items: [{ title: productInfo.replace('• ', ''), qty: 1, price: 0 }],
-        date: new Date().toLocaleString()
-    });
-    localStorage.setItem('luvellaOrders', JSON.stringify(orders));
-
-    const waMessage =
+    const msg =
         '🦋 *নতুন অর্ডার - Luvella Avenue*\n' +
         '━━━━━━━━━━━━━━━━━━\n' +
         '👤 *নাম:* ' + name + '\n' +
         '📞 *মোবাইল:* ' + phone + '\n' +
         '📍 *ঠিকানা:* ' + address + '\n' +
         '🚚 *এলাকা:* ' + areaText + '\n\n' +
-        '🛍️ *প্রোডাক্ট:*\n' + productInfo + '\n\n' +
+        '🛍️ *প্রোডাক্ট:*\n' + prodInfo + '\n\n' +
         payDetails + '\n' +
         '📝 *নোট/সাইজ:* ' + note + '\n' +
         '━━━━━━━━━━━━━━━━━━\n' +
-        '💰 *সর্বমোট বিল:* ' + totalBill;
+        '💰 *সর্বমোট বিল:* ' + total;
 
-    openSmartWhatsApp(orderPhone, waMessage);
+    window.location.href = 'https://whatsapp.com' + targetPhone + '&text=' + encodeURIComponent(msg);
 }, true);

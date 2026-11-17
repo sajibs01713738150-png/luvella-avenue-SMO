@@ -599,3 +599,30 @@
     pointer-events: auto !important;
     cursor: pointer !important;
 }
+/* =========================================
+   MOBILE BOTTOM BAR REMOVE & FOOTER STICK TO BOTTOM
+========================================= */
+.mobile-bottom-nav,
+.bottom-nav,
+nav.mobile-nav {
+    display: none !important;
+}
+
+body {
+    padding-bottom: 0 !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.footer {
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .help-widget {
+        bottom: 16px !important;
+        right: 14px !important;
+    }
+}
